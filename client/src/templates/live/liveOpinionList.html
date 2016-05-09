@@ -1,0 +1,78 @@
+<div data-ng-controller="LiveCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <ul class="nav nav-tabs ">
+                    <li role="presentation"  class="active"><a>直播内容管理</a></li>
+                    <li role="presentation" ><a href="#/live/add">发布直播</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div class="white-box">
+    <div class="row">
+        <div class="col-xs-12 col-lg-1 col-md-2">
+            <a href="#/live/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>发布直播</a>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1" style="position: relative;z-index: 99;border-right: 1px solid #ddd;"><i class="fa fa-filter"></i> 根据板块筛选 </span>
+                <select class="form-control input-sm" ng-model="bid" id="cc" style="margin-left: -4px;"  ng-options="option.name for option in channelList track by option.value" ng-change="changeChannel()">
+                </select>
+                    <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-primary btn-sm" type="button" ng-click="filter(keyword)">-->
+                            <!--<span class="fa fa-filter"></span>筛选-->
+                        <!--</button>-->
+                    <!--</span>-->
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-4 col-lg-offset-1 col-sm-6" style="line-height: 30px;text-align: right">
+
+            <button class="btn btn-sm btn-default" ng-click="jumpPrev()" ng-disabled="currentPage<=1"><span class="fa fa-arrow-left"></span></button>
+            <button class="btn btn-sm btn-default" ng-click="jumpNext()" ng-disabled="totalCount/30<=1"><span class="fa fa-arrow-right"></span></button>
+            共{{totalCount||0}}条直播,当前页数:{{currentPage}}.
+        </div>
+        <div class="col-xs-6 col-md-2 col-sm-6 ">
+            <div class="input-group">
+                <input type="text" class="form-control input-sm" placeholder="输入页码..." ng-model="jPage">
+                <span class="input-group-btn" ng-click="jump(jPage)">
+                    <button class="btn btn-default btn-sm" type="button"><span class="fa fa-share"></span></button>跳转
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12" id="no-more-tables">
+        <table class="table table-striped ">
+            <thead class="cf">
+            <tr>
+                <th>ID</th>
+                <th>所属栏目</th>
+                <th>内容</th>
+                <th>作者</th>
+                <th>创建时间</th>
+                <th>查看权限</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in dataList">
+                <th>{{data.timeline_id}}</th>
+                <td>{{data.channel_name}}</td>
+                <td>{{data.content}}</td>
+                <td>{{data.writer.nickname}}</td>
+                <td>{{data.time}}</td>
+                <td>{{data.allow_see_lv}}</td>
+                <td>{{data.status==1?'正常':'禁用'}}</td>
+                <td>
+                    <a  class="del-btn" ng-click="delete(data.timeline_id)" ng-if="data.status==1"><span class="fa fa-fw fa-trash"></span> 删除</a>
+                    <a  class="del-btn" ng-click="delete(data.timeline_id)" ng-if="data.status!=1"><span class="fa fa-fw fa-recycle"></span> 恢复</a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>

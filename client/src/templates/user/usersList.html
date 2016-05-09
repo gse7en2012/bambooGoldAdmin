@@ -1,7 +1,46 @@
 <div data-ng-controller="UsersCtrl">
     <div class="row">
-        <div class="col-xs-12 col-lg-1 col-md-2">
-            <a href="#/user/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>添加用户</a>
+        <div class="col-xs-12 col-lg-12 col-md-12">
+            <!--<a href="#/user/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>添加用户</a>-->
+            <div class="well" style="background: #fefefe;margin-bottom: 0;padding: 12px;">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                            <label for="exampleInputName2">最后登录时间晚于:</label>
+                            <input type="text" class="form-control input-sm" id="exampleInputName2"
+                                   placeholder="2016-04-12" ng-model="maxDate">
+                        </datepicker>
+                    </div>
+                    <div class="form-group">
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                            <label for="exampleInputEmail2">最后登录时间早于:</label>
+                            <input type="email" class="form-control input-sm" id="exampleInputEmail2"
+                                   placeholder="2016-04-11">
+                        </datepicker>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">是否付费会员:</label>
+                        <!--<label class="radio-inline">-->
+                        <!--<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">是-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                        <!--<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">否-->
+                        <!--</label>-->
+                        <!--<label class="radio-inline">-->
+                        <!--<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">不限-->
+                        <!--</label>-->
+                        <select class="form-control input-sm">
+                            <option>不限</option>
+                            <option>是</option>
+                            <option>否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">确定增加条件筛选</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
@@ -12,9 +51,10 @@
                 <th>用户ID</th>
                 <th>用户名</th>
                 <th>最后登录时间</th>
-                <th>创建时间</th>
-                <th>权限</th>
-                <th>当前状态</th>
+                <th>注册时长</th>
+                <th>付费身份</th>
+                <th>付费到期</th>
+                <th ng-if="dataList[0].phone">电话</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -23,12 +63,14 @@
                 <th>{{data.uid}}</th>
                 <td>{{data.name}}</td>
                 <td>{{data.login_time}}</td>
-                <td>{{data.createdAt}}</td>
-                <td><span></span>{{data.permissions==1?'超级管理员':'普通管理员'}}</td>
-                <td><span ng-class="{'text-danger':data.is_ban==1}">{{data.is_ban==1?'禁用':'正常'}}</span></td>
+                <td>{{data.age}}个月</td>
+                <td><span></span>{{data.vip_level}}</td>
+                <td><span></span>{{data.vip_expires}}</td>
+                <!--<td><span ng-class="{'text-danger':data.status!=1}">{{data.is_ban!=1?'禁用':'正常'}}</span></td>-->
+                <td ng-if="data.phone">{{data.phone}}</td>
                 <td>
-                    <a href="javasrcipt:;" class="edit-btn" ng-click="change(data.uid,data.name)"><span class="fa fa-edit"></span>修改密码</a>
-                    <a href="javascript:;" class="del-btn" ng-click="delete(data.uid,data.is_ban)"><span ng-class="{fa:true, 'fa-ban':data.is_ban==0,'fa-check':data.is_ban==1,'text-danger':data.is_ban==0}">{{data.is_ban==1?'启用':'禁用'}}</span></a>
+                    <a href="javascript:;" class="del-btn" ng-click="delete(data.uid,data.is_ban)"><span
+                            ng-class="{fa:true, 'fa-ban':data.status==1,'fa-check':data.status==0,'text-danger':data.status==1}">{{data.status==0?'启用':'禁用'}}</span></a>
                 </td>
             </tr>
             </tbody>

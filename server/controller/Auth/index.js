@@ -14,7 +14,7 @@ const moment        = require('moment');
 const AuthController = {
     generateAdminUser(username, password,permissions){
         const originPassword = password || cryptoUtils.randomString(8);
-        return DataBaseModel.Users.findOrCreate({
+        return DataBaseModel.AdminUsers.findOrCreate({
             where: {name: username},
             defaults: {
                 name: username,
@@ -30,7 +30,7 @@ const AuthController = {
     },
     loginAdminUser(username, password,ip){
         if (!username || !password) return Promise.reject('参数不完整');
-        return DataBaseModel.Users.find({
+        return DataBaseModel.AdminUsers.find({
             where: {
                 name: username,
                 password: cryptoUtils.md5(password + Config.passwordSalt)
@@ -54,7 +54,7 @@ const AuthController = {
     },
     updateAdminUserPassword(uid, newPassword){
         if (!uid || !newPassword) return Promise.reject('参数不完整');
-        return DataBaseModel.Users.find({
+        return DataBaseModel.AdminUsers.find({
             where: {uid: uid}
         }).then((user)=> {
             if (!user) return Promise.reject('不存在该用户');
@@ -68,7 +68,7 @@ const AuthController = {
         })
     },
     getUserList(){
-        return DataBaseModel.Users.findAll({
+        return DataBaseModel.AdminUsers.findAll({
             attributes: ['uid', 'name', 'login_time', 'permissions', 'is_ban', 'createdAt']
         }).then((users)=> {
             users.forEach((item)=> {
@@ -80,7 +80,7 @@ const AuthController = {
         })
     },
     checkIsMaster(uid){
-        return DataBaseModel.Users.find({
+        return DataBaseModel.AdminUsers.find({
             where: {uid: uid},
             attributes: ['permissions']
         }).then((r)=> {
@@ -88,7 +88,7 @@ const AuthController = {
         })
     },
     banAccount(uid, type){
-        return DataBaseModel.Users.find({
+        return DataBaseModel.AdminUsers.find({
             where: {uid: uid}
         }).then((user)=> {
             if (user) {

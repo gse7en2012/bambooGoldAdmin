@@ -13,7 +13,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
         $stateProvider
             .state('admin', {
                 url: '/',
-                templateUrl: 'templates/news/newsList.html'
+                templateUrl: 'templates/live/liveOpinionList.html'
             })
             .state('news', {
                 url: '/news',
@@ -75,22 +75,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/links/add',
                 templateUrl: 'templates/links/linkAdd.html'
             })
-            .state('info', {
-                url: '/info',
-                templateUrl: 'templates/info/infoChannelList.html'
-            })
-            .state('infoArt', {
-                url: '/info/list',
-                templateUrl: 'templates/info/infoArtList.html'
-            })
-            .state('infoArtAdd', {
-                url: '/info/add',
-                templateUrl: 'templates/info/infoArtAdd.html'
-            })
-            .state('infoArtEdit', {
-                url: '/info/edit/:art_id',
-                templateUrl: 'templates/info/infoArtEdit.html'
-            })
+
             .state('user', {
                 url: '/user',
                 templateUrl: 'templates/user/usersList.html'
@@ -102,6 +87,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('userAdd', {
                 url: '/user/add',
                 templateUrl: 'templates/user/usersAdd.html'
+            })
+            .state('live', {
+                url: '/live',
+                templateUrl: 'templates/live/liveOpinionList.html'
+            })
+            .state('liveAdd', {
+                url: '/live/add',
+                templateUrl: 'templates/live/liveOpinionAdd.html'
             });
     }
 ]);

@@ -25,8 +25,8 @@ const mysqlAppConn = new Seq(DBConfig.appTableName, DBConfig.user, DBConfig.pass
     pool: {maxConnections: 150, maxIdleTime: 300}
 });
 
-const mysqlAdminConn = new Seq(DBConfig.adminTableName, DBConfig.user, DBConfig.password, {
-    host: DBConfig.host,
+const mysqlAdminConn = new Seq(DBConfig.adminTableName, DBConfig.user, DBConfig.adminPassword, {
+    host: DBConfig.adminHost,
     port: DBConfig.port,
     dialect: 'mysql',
     logging: console.log,
@@ -49,10 +49,14 @@ const LoginLogs  = mysqlAppConn.import(__dirname + '/LoginLogs');
 const News       = mysqlAppConn.import(__dirname + '/News');
 const NewsAct    = mysqlAppConn.import(__dirname + '/NewsAct');
 const Strategy   = mysqlAppConn.import(__dirname + '/Strategy');
-const Users      = mysqlAppConn.import(__dirname + '/Users');
 const Channel    = mysqlAppConn.import(__dirname + '/Channel');
 const ChannelArt = mysqlAppConn.import(__dirname + '/ChannelArt');
 
+const Users             = mysqlAppConn.import(__dirname + '/Users');
+const LiveUsers         = mysqlAppConn.import(__dirname + '/LiveUsers');
+const LiveOpinion       = mysqlAppConn.import(__dirname + '/LiveOpinion');
+const LiveOpinionLike   = mysqlAppConn.import(__dirname + '/LiveOpinionLike');
+const LiveOpinionReview = mysqlAppConn.import(__dirname + '/LiveOpinionReview');
 
 //mysqlAdmin
 const AdminUsers = mysqlAdminConn.import(__dirname + '/AdminUsers');
@@ -71,9 +75,17 @@ exports.LoginLogs  = LoginLogs;
 exports.News       = News;
 exports.NewsAct    = NewsAct;
 exports.Strategy   = Strategy;
-exports.Users      = Users;
-exports.AdminUsers = AdminUsers;
 exports.Channel    = Channel;
 exports.ChannelArt = ChannelArt;
-exports.MysqlApp   = mysqlAppConn;
-exports.MysqlAdmin = mysqlAdminConn;
+
+LiveOpinion.belongsTo(LiveUsers, {foreignKey: 'uid', targetKey: 'uid'});
+
+
+exports.LiveOpinion       = LiveOpinion;
+exports.LiveOpinionLike   = LiveOpinionLike;
+exports.LiveOpinionReview = LiveOpinionReview;
+exports.LiveUsers         = LiveUsers;
+exports.Users             = Users;
+exports.AdminUsers        = AdminUsers;
+exports.MysqlApp          = mysqlAppConn;
+exports.MysqlAdmin        = mysqlAdminConn;

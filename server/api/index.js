@@ -11,7 +11,9 @@ const serviceApi = {
     LogsApi: require('./LogsApi'),
     NewsApi: require('./NewsApi'),
     NewsActApi: require('./NewsActApi'),
-    InfoApi:require('./InfoApi')
+    InfoApi:require('./InfoApi'),
+    UsersApi:require('./UsersApi'),
+    LiveApi:require('./LiveApi')
 };
 
 module.exports = serviceApi;

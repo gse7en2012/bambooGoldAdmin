@@ -24,7 +24,6 @@ const UsersController = {
         if (query) search.where = query;
         return DataBaseModel.Users.findAll(search).then((users)=> {
             users.forEach((item)=> {
-                console.log(item);
                 item.dataValues.login_time = moment(item.dataValues.login_time).format('YYYY-MM-DD HH:mm:ss');
                 item.dataValues.createdAt  = moment(item.dataValues.createdAt).format('YYYY-MM-DD HH:mm:ss');
                 item.dataValues.age        = (moment().diff(moment(item.dataValues.createdAt), 'hour') / 24 / 30).toFixed(2);
@@ -51,6 +50,6 @@ const UsersController = {
 };
 
 module.exports = UsersController;
-UsersController.getUserList(1).then((r)=> {console.log(JSON.stringify(r));})
+//UsersController.getUserList(1).then((r)=> {console.log(JSON.stringify(r));})
 //AuthController.generateAdminUser('gseven2').then((r)=>{console.log(r);});
 //AuthController.loginAdminUser('gseven2', 'O7I3CwuL').then((r)=> {console.log(r);});

@@ -4,11 +4,13 @@
 
 module.exports={
     DBConfig:{
-        appTableName:'dropgold',
+        appTableName:'dropgold_app',
         adminTableName:'dropgold_admin',
         user:'root',
-        password:'shimen112',
-        host:'127.0.0.1',
+        password:'zab0326__',
+        adminPassword:'shimen112',
+        host:'120.132.145.2',
+        adminHost:'127.0.0.1',
         post:3306
     },
     outputConfig:{

@@ -54,6 +54,7 @@ app.use(cookieParser());
 app.all('*', interceptor);
 
 app.use('/', routes.Inits);
+app.use('/users', routes.Users);
 app.use('/auth', routes.Auth);
 app.use('/news', routes.News);
 app.use('/news_act', routes.NewsAct);
@@ -61,7 +62,7 @@ app.use('/strategy', routes.Strategy);
 app.use('/activity', routes.Activity);
 app.use('/links', routes.Links);
 app.use('/info', routes.Info);
-
+app.use('/live',routes.Live);
 
 //for umeditor
 app.post('/upload', upload.single('upfile'), (req, res)=> uploadImgRes(req, res, 'images'));

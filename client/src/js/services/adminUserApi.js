@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('RDash').service('usersApiService', ['$http', '$q', function ($http, $q) {
+angular.module('RDash').service('adminUsersApiService', ['$http', '$q', function ($http, $q) {
 
     function httpRequest(opts) {
         var d = $q.defer();
@@ -22,9 +22,7 @@ angular.module('RDash').service('usersApiService', ['$http', '$q', function ($ht
     //    })
     //}
 
-    this.getUsersList = ()=> httpRequest({method: 'GET', url: `/users/list`});
-
-
+    this.getUsersList = ()=> httpRequest({method: 'GET', url: `/auth/user/list`});
     this.addUsers = (user)=>httpRequest({method: 'POST', url: `/auth/user/add`, data: user});
     this.updatedUserPassword = (user)=>httpRequest({method: 'POST', url: `/auth/user/update`, data: user});
     this.banUser= (uid,type)=>httpRequest({method: 'POST', url: `/auth/user/ban`, data: {uid:uid,type:type}});

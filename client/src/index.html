@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+    <link rel="stylesheet" type="text/css" href="components/angularjs-datepicker/dist/angular-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="components/mystyle.css">
     <!-- endbuild -->
     <!-- SCRIPTS -->
@@ -22,6 +23,7 @@
     <script type="text/javascript" src="components/ueditor/angular-ueditor.min.js"></script>
     <script type="text/javascript" src="components/ng-flow/ng-flow.js"></script>
     <script type="text/javascript" src="components/moment/moment.min.js"></script>
+    <script type="text/javascript" src="components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
     <!-- endbuild -->
     <!-- Custom Scripts -->
 
@@ -40,7 +42,7 @@
         <ul class="sidebar">
             <li class="sidebar-main">
                 <a ng-click="toggleSidebar()">
-                    滴滴金-管理后台
+                    管理后台
                     <span class="menu-icon glyphicon glyphicon-transfer"></span>
                 </a>
             </li>
@@ -49,12 +51,14 @@
                         class="menu-icon fa fa-users fa-fw"></span></a>
             </li>
             <li class="sidebar-list">
-                <a href="#/news" ng-click="setNavName($event)">付费管理<span class="menu-icon fa fa-money fa-fw"></span></a>
-            </li>
-            <li class="sidebar-list">
-                <a href="#/news_act" ng-click="setNavName($event)">直播管理<span
+                <a href="#/live" ng-click="setNavName($event)">直播管理<span
                         class="menu-icon fa fa-tv fa-fw"></span></a>
             </li>
+
+            <li class="sidebar-list">
+                <a href="#/news" ng-click="setNavName($event)">付费管理<span class="menu-icon fa fa-money fa-fw"></span></a>
+            </li>
+
             <li class="sidebar-list">
                 <a href="#/activity" ng-click="setNavName($event)">聊天管理<span
                         class="menu-icon fa fa-commenting-o fa-fw"></span></a>
@@ -92,7 +96,7 @@
                     <div class="user pull-right">
                         <div class="item dropdown" uib-dropdown>
                             <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                                <img src="img/avatar.jpg">gseven
+                                <img src="img/avatar.jpg">管理
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="dropdown-header">
