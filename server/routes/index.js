@@ -10,5 +10,7 @@ module.exports = {
     Info: require('./Info'),
     Strategy: require('./Strategy'),
     Users: require('./Users'),
-    Live: require('./Live')
+    Live: require('./Live'),
+    Discuss: require('./Discuss'),
+    Questions: require('./Questions')
 };

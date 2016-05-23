@@ -3,9 +3,9 @@
  */
 'use strict';
 
-angular.module('RDash').controller('LiveAddCtrl', ['$scope', '$cookieStore', 'liveApiService', LiveAddCtrl]);
+angular.module('RDash').controller('DiscussAddCtrl', ['$scope', '$cookieStore', 'liveApiService', DiscussAddCtrl]);
 
-function LiveAddCtrl($scope, $cookieStore, liveApiService) {
+function DiscussAddCtrl($scope, $cookieStore, liveApiService) {
 
 
     $scope.channelList = [
@@ -34,7 +34,7 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
         liveApiService.addLiveOpinion({
             content: $scope.content,
             title: $scope.title,
-            channel_id: 1||$scope.channelId,
+            channel_id: 2,
             uid: $scope.uid,
             allow_see_lv: $scope.allowSeeLv
         }).then(()=> {

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (sequelize, DataType) {
-    return sequelize.define('live_opinion',
+    return sequelize.define('live_discuss',
         {
             opinion_id: {type: DataType.INTEGER, primaryKey: true, autoIncrement: true, comment: ''},
             uid: {type: DataType.INTEGER, allowNull: false},
@@ -17,12 +17,12 @@ module.exports = function (sequelize, DataType) {
             title: {type: DataType.STRING, comment: '话题标题'},
             read_count: {type: DataType.INTEGER, comment: '阅读数', defaultValue: 0},
             retweeted_count: {type: DataType.INTEGER, comment: '转发数', defaultValue: 0},
-            channel_id: {type: DataType.INTEGER, comment: '板块id 1直播，2交流，3问答'},
+            channel_id: {type: DataType.INTEGER, comment: '板块id'},
             quality: {type: DataType.INTEGER, defaultValue: 0, comment: '0默认1热门2精华'},
-            allow_see_lv: {type: DataType.INTEGER}
+            allow_see_lv: {type: DataType.INTEGER, comment: '1普通2会员4vip8vvip'}
         }, {
             timestamps: true,
-            comment: '观点表'
+            comment: '交流表'
         }
     );
-};
+}

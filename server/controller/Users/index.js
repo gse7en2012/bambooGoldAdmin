@@ -34,6 +34,14 @@ const UsersController = {
         })
     },
 
+    getVerifyUser(){
+        return DataBaseModel.Users.findAll({
+            attributes: ['uid', 'nickname'],
+            where: {verify: 1}
+        }).then((users)=> {
+            return users;
+        })
+    },
 
     banUser(uid, type){
         return DataBaseModel.Users.find({
@@ -46,7 +54,8 @@ const UsersController = {
             }
             return type;
         })
-    }
+    },
+
 };
 
 module.exports = UsersController;

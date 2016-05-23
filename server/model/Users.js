@@ -19,7 +19,8 @@ module.exports = (sequelize, DataType)=> {
         country_code: {type: DataType.STRING, comment: '手机国家代码'},
         union_id: {type: DataType.STRING, comment: '微信Id'},
         vip_level: {type: DataType.INTEGER, comment: 'vip等级', defaultValue: 0},
-        vip_expires: {type: DataType.STRING, comment: 'vip期限'}
+        vip_expires: {type: DataType.STRING, comment: 'vip期限'},
+        verify:{type:DataType.INTEGER,defaultValue:0}
     }, {
         timestamps: true
     });

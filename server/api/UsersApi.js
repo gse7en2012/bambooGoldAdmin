@@ -17,6 +17,12 @@ const UsersApi = {
             e=>Helpers.resFailure(res, e)
         )
     },
+    getVerifyUserIF(req,res){
+        return Controller.Users.getVerifyUser().then(
+            r=>Helpers.resSuccess(res, r),
+            e=>Helpers.resFailure(res, e)
+        )
+    }
 };
 
 module.exports = UsersApi;

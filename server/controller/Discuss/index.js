@@ -33,7 +33,7 @@ const $liveSelfHelpers = {
                 attributes: ['content', 'pic_urls', 'opinion_id'],
                 include: [{
                     model: DataBaseModel.Users,
-                    attributes: ['nickname', 'picture', 'uid', 'verify']
+                    attributes: [ 'nickname', 'picture', 'uid', 'verify']
                     //required: true,
                     //where: {type: Number(type) - 3}
                 }]
@@ -55,8 +55,8 @@ const $liveSelfHelpers = {
 };
 
 
-const LiveOpinionController = {
-    getLiveOpinionList(page, bid){
+const DiscussOpinionController = {
+    getLiveOpinionList(page){
         page = page || 1;
         //搜索索引，type=1传,prev_index内容；type=2，传传next_index内容
         const pageSize = 30;
@@ -69,10 +69,9 @@ const LiveOpinionController = {
             order: 'opinion_id DESC',
             limit: pageSize,
             offset: (page - 1) * pageSize,
+            channel_id:2
         };
-
-        if (bid) query.where = {channel_id: bid};
-        return DataBaseModel.LiveOpinion.findAndCountAll(query).then((result)=> {
+        return DataBaseModel.LiveDiscuss.findAndCountAll(query).then((result)=> {
             const promiseArr = [];
             const list       = result.rows;
             totalCount       = result.count;
@@ -89,11 +88,7 @@ const LiveOpinionController = {
         });
     },
     addLiveOpinion(opts){
-        let DbInstance = DataBaseModel.LiveOpinion;
-        if (opts.channel_id == 2) {
-            DbInstance = DataBaseModel.LiveDiscuss;
-        }
-        return DbInstance.create({
+        return DataBaseModel.LiveDiscuss.create({
             uid: opts.uid,
             symbols: opts.symbols,
             content: opts.content,
@@ -106,7 +101,7 @@ const LiveOpinionController = {
         });
     },
     banLiveOpinion(opId){
-        return DataBaseModel.LiveOpinion.find({
+        return DataBaseModel.LiveDiscuss.find({
             where: {opinion_id: opId}
         }).then((op)=> {
             op.status = 0;
@@ -114,7 +109,7 @@ const LiveOpinionController = {
         })
     },
     recoveryLiveOpinion(opId){
-        return DataBaseModel.LiveOpinion.find({
+        return DataBaseModel.LiveDiscuss.find({
             where: {opinion_id: opId}
         }).then((op)=> {
             op.status = 1;
@@ -131,4 +126,4 @@ const LiveOpinionController = {
 //});
 //LiveOpinionController.banLiveOpinion(2);
 
-module.exports = LiveOpinionController;
+module.exports = DiscussOpinionController;

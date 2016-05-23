@@ -57,7 +57,8 @@ const LiveUsers         = mysqlAppConn.import(__dirname + '/LiveUsers');
 const LiveOpinion       = mysqlAppConn.import(__dirname + '/LiveOpinion');
 const LiveOpinionLike   = mysqlAppConn.import(__dirname + '/LiveOpinionLike');
 const LiveOpinionReview = mysqlAppConn.import(__dirname + '/LiveOpinionReview');
-
+const LiveDiscuss       = mysqlAppConn.import(__dirname + '/LiveDiscuss');
+const LiveQuestions     = mysqlAppConn.import(__dirname + '/LiveQuestions');
 //mysqlAdmin
 const AdminUsers = mysqlAdminConn.import(__dirname + '/AdminUsers');
 
@@ -68,20 +69,15 @@ ChannelArt.belongsTo(Channel, {foreignKey: 'channel_id', targetKey: 'channel_id'
 //ShareLog.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
 //ShareLog.belongsTo(WxArt, {foreignKey: 'art_id', targetKey: 'art_id'});
 
-exports.Activity   = Activity;
-exports.Links      = Links;
-exports.Logs       = Logs;
-exports.LoginLogs  = LoginLogs;
-exports.News       = News;
-exports.NewsAct    = NewsAct;
-exports.Strategy   = Strategy;
-exports.Channel    = Channel;
-exports.ChannelArt = ChannelArt;
 
-LiveOpinion.belongsTo(LiveUsers, {foreignKey: 'uid', targetKey: 'uid'});
+LiveOpinion.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
+LiveDiscuss.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
+LiveQuestions.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
 
+exports.LiveOpinion   = LiveOpinion;
+exports.LiveDiscuss   = LiveDiscuss;
+exports.LiveQuestions = LiveQuestions;
 
-exports.LiveOpinion       = LiveOpinion;
 exports.LiveOpinionLike   = LiveOpinionLike;
 exports.LiveOpinionReview = LiveOpinionReview;
 exports.LiveUsers         = LiveUsers;

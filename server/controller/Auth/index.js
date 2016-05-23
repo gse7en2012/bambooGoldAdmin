@@ -40,12 +40,12 @@ const AuthController = {
             if (user.is_ban == 1) return Promise.reject('账户已被禁用');
             user.login_time = new Date();
             user.save();
-            const loginLog=DataBaseModel.LoginLogs.build({
-                login_time:new Date(),
-                login_uid: user.uid,
-                login_ip: ip
-            });
-            loginLog.save();
+            //const loginLog=DataBaseModel.LoginLogs.build({
+            //    login_time:new Date(),
+            //    login_uid: user.uid,
+            //    login_ip: ip
+            //});
+            //loginLog.save();
             return {
                 name: user.name,
                 uid: user.uid

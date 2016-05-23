@@ -1,10 +1,10 @@
-<div data-ng-controller="LiveCtrl">
+<div data-ng-controller="DiscussCtrl">
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
                 <ul class="nav nav-tabs ">
-                    <li role="presentation"  class="active"><a>直播内容管理</a></li>
-                    <li role="presentation" ><a href="#/live/add">发布直播</a></li>
+                    <li role="presentation"  class="active"><a>交流内容管理</a></li>
+                    <li role="presentation" ><a href="#/discuss/add">发布交流</a></li>
                 </ul>
             </div>
         </div>
@@ -12,7 +12,7 @@
 <div class="white-box">
     <div class="row">
         <div class="col-xs-12 col-lg-1 col-md-2">
-            <a href="#/live/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>发布直播</a>
+            <a href="#/discuss/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>发布交流</a>
         </div>
         <div class="col-lg-4 col-md-4">
             <!--<div class="input-group">-->
@@ -26,7 +26,7 @@
 
             <button class="btn btn-sm btn-default" ng-click="jumpPrev()" ng-disabled="currentPage<=1"><span class="fa fa-arrow-left"></span></button>
             <button class="btn btn-sm btn-default" ng-click="jumpNext()" ng-disabled="totalCount/30<=1"><span class="fa fa-arrow-right"></span></button>
-            共{{totalCount||0}}条直播,当前页数:{{currentPage}}.
+            共{{totalCount||0}}条交流,当前页数:{{currentPage}}.
         </div>
         <div class="col-xs-6 col-md-2 col-sm-6 ">
             <div class="input-group">
@@ -56,7 +56,7 @@
             <tr ng-repeat="data in dataList">
                 <th>{{data.timeline_id}}</th>
                 <td>{{data.channel_name}}</td>
-                <td>{{data.content}}</td>
+                <td width="50%">{{data.content}}</td>
                 <td>{{data.writer.nickname}}</td>
                 <td>{{data.time}}</td>
                 <td>{{data.allow_see_lv}}</td>

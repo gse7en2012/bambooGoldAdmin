@@ -13,7 +13,9 @@ const serviceApi = {
     NewsActApi: require('./NewsActApi'),
     InfoApi:require('./InfoApi'),
     UsersApi:require('./UsersApi'),
-    LiveApi:require('./LiveApi')
+    LiveApi:require('./LiveApi'),
+    DiscussApi:require('./DiscussApi'),
+    QuestionsApi:require('./QuestionsApi')
 };
 
 module.exports = serviceApi;

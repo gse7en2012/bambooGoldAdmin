@@ -7,7 +7,7 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
 
         // For unmatched routes
-        $urlRouterProvider.otherwise('/news');
+        $urlRouterProvider.otherwise('/live');
 
         // Application routes
         $stateProvider
@@ -95,6 +95,22 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('liveAdd', {
                 url: '/live/add',
                 templateUrl: 'templates/live/liveOpinionAdd.html'
+            })
+            .state('discuss', {
+                url: '/discuss',
+                templateUrl: 'templates/discuss/discussOpinionList.html'
+            })
+            .state('discussAdd', {
+                url: '/discuss/add',
+                templateUrl: 'templates/discuss/discussOpinionAdd.html'
+            })
+            .state('questions', {
+                url: '/questions',
+                templateUrl: 'templates/questions/questionsOpinionList.html'
+            })
+            .state('questionsDetails', {
+                url: '/questions/:id?view',
+                templateUrl: 'templates/questions/questionsOpinionReply.html'
             });
     }
 ]);

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('RDash').service('liveApiService', ['$http', '$q', function ($http, $q) {
+angular.module('RDash').service('discussApiService', ['$http', '$q', function ($http, $q) {
 
     function httpRequest(opts) {
         var d = $q.defer();
@@ -13,22 +13,20 @@ angular.module('RDash').service('liveApiService', ['$http', '$q', function ($htt
 
 
     this.getLiveOpinionList = (page, bid)=> {
-        var url = `/live/list?page=${page}`;
+        var url = `/discuss/list?page=${page}`;
         if (bid) url += '&bid=' + bid;
         return httpRequest({
             method: 'GET',
             url: url
         });
     };
-    this.deleteOpinion      = (newsId)=>httpRequest({method: 'POST', url: `/live/ban`, data: {opinion_id: newsId}});
+    this.deleteOpinion      = (newsId)=>httpRequest({method: 'POST', url: `/discuss/ban`, data: {opinion_id: newsId}});
     this.recoveryOpinion    = (newsId)=>httpRequest({
         method: 'POST',
-        url: `/live/recovery`,
+        url: `/discuss/recovery`,
         data: {opinion_id: newsId}
     });
 
-    this.addLiveOpinion = (op)=>httpRequest({method: 'POST', url: `/live/add`, data: op});
 
-    this.getVerifyUser = ()=>httpRequest({method: 'GET', url: `/users/verify`});
 
 }]);

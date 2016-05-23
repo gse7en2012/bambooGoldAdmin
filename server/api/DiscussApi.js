@@ -7,11 +7,10 @@
 const Controller = require('../controller');
 const Helpers    = require('../helpers');
 
-const LiveApi = {
+const DiscussApi = {
     getLiveListIF(req, res){
         const page = req.query.page;
-        const bid  = req.query.bid;
-        return Controller.Live.getLiveOpinionList(page, bid).then(
+        return Controller.Discuss.getLiveOpinionList(page).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
@@ -19,7 +18,7 @@ const LiveApi = {
 
     deleteLiveOpinionIF(req, res){
         const opId = req.body.opinion_id;
-        return Controller.Live.banLiveOpinion(opId).then(
+        return Controller.Discuss.banLiveOpinion(opId).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
@@ -27,7 +26,7 @@ const LiveApi = {
 
     recoveryLiveOpinionIF(req, res){
         const opId = req.body.opinion_id;
-        return Controller.Live.recoveryLiveOpinion(opId).then(
+        return Controller.Discuss.recoveryLiveOpinion(opId).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
@@ -42,7 +41,7 @@ const LiveApi = {
             channel_id: req.body.channel_id,
             allow_see_lv:req.body.allow_see_lv
         };
-        return Controller.Live.addLiveOpinion(opinion).then(
+        return Controller.Discuss.addLiveOpinion(opinion).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
@@ -50,4 +49,4 @@ const LiveApi = {
 
 };
 
-module.exports = LiveApi;
+module.exports = DiscussApi;

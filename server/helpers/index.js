@@ -26,12 +26,12 @@ const encryptConfig = {
 
 const globalHelpers = {
     logAction(uid,ctx){
-        const log=DataBaseModel.Logs.build({
-            logs_uid:uid,
-            logs_ctx:ctx,
-            datetime:new Date()
-        });
-        return log.save();
+        //const log=DataBaseModel.Logs.build({
+        //    logs_uid:uid,
+        //    logs_ctx:ctx,
+        //    datetime:new Date()
+        //});
+        //return log.save();
     },
     resSuccess(res, r, code){
         return res.status(code || 200).json({

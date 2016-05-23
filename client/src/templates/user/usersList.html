@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <datepicker date-format="yyyy-MM-dd" selector="form-control">
                             <label for="exampleInputEmail2">最后登录时间早于:</label>
-                            <input type="email" class="form-control input-sm" id="exampleInputEmail2"
+                            <input type="text" class="form-control input-sm" id="exampleInputEmail2"
                                    placeholder="2016-04-11">
                         </datepicker>
                     </div>
@@ -52,22 +52,22 @@
                 <th>用户名</th>
                 <th>最后登录时间</th>
                 <th>注册时长</th>
-                <th>付费身份</th>
+                <th>Vip等级</th>
                 <th>付费到期</th>
-                <th ng-if="dataList[0].phone">电话</th>
+                <th>电话</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="data in dataList">
                 <th>{{data.uid}}</th>
-                <td>{{data.name}}</td>
+                <td>{{data.nickname}}</td>
                 <td>{{data.login_time}}</td>
                 <td>{{data.age}}个月</td>
                 <td><span></span>{{data.vip_level}}</td>
-                <td><span></span>{{data.vip_expires}}</td>
+                <td><span></span>{{data.vip_expires||'N/A'}}</td>
                 <!--<td><span ng-class="{'text-danger':data.status!=1}">{{data.is_ban!=1?'禁用':'正常'}}</span></td>-->
-                <td ng-if="data.phone">{{data.phone}}</td>
+                <td>{{data.phone||'N/A'}}</td>
                 <td>
                     <a href="javascript:;" class="del-btn" ng-click="delete(data.uid,data.is_ban)"><span
                             ng-class="{fa:true, 'fa-ban':data.status==1,'fa-check':data.status==0,'text-danger':data.status==1}">{{data.status==0?'启用':'禁用'}}</span></a>

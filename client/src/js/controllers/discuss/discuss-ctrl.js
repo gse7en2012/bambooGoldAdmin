@@ -4,9 +4,9 @@
 'use strict';
 
 
-angular.module('RDash').controller('LiveCtrl', ['$scope', '$cookieStore', 'liveApiService', LiveCtrl]);
+angular.module('RDash').controller('DiscussCtrl', ['$scope', '$cookieStore', 'discussApiService', DiscussCtrl]);
 
-function LiveCtrl($scope, $cookieStore, liveApiService) {
+function DiscussCtrl($scope, $cookieStore, discussApiService) {
 
     $scope.channelList = [
         {value: 1, name: '直播'},
@@ -15,7 +15,7 @@ function LiveCtrl($scope, $cookieStore, liveApiService) {
     ];
 
     $scope.changeChannel = function () {
-        liveApiService.getLiveOpinionList($scope.currentPage, $scope.bid.value).then(bindData2Scope);
+        discussApiService.getLiveOpinionList($scope.currentPage, $scope.bid.value).then(bindData2Scope);
     };
 
     function bindData2Scope(data) {
@@ -27,12 +27,12 @@ function LiveCtrl($scope, $cookieStore, liveApiService) {
         })
     }
 
-    liveApiService.getLiveOpinionList(1).then(bindData2Scope);
+    discussApiService.getLiveOpinionList(1).then(bindData2Scope);
 
 
     $scope.delete = (timelineId)=> {
-        if (!confirm('确定删除该条直播!')) return;
-        liveApiService.deleteOpinion(timelineId).then(()=> {
+        if (!confirm('确定删除该条交流!')) return;
+        discussApiService.deleteOpinion(timelineId).then(()=> {
             $scope.dataList.forEach((item, index)=> {
                 if (item.timeline_id == timelineId) {
                     item.status = 0;
@@ -42,8 +42,8 @@ function LiveCtrl($scope, $cookieStore, liveApiService) {
     };
 
     $scope.recovery = (timelineId)=> {
-        if (!confirm('确定恢复该条直播!')) return;
-        liveApiService.recoveryOpinion(timelineId).then(()=> {
+        if (!confirm('确定恢复该条交流!')) return;
+        discussApiService.recoveryOpinion(timelineId).then(()=> {
             $scope.dataList.forEach((item, index)=> {
                 if (item.timeline_id == timelineId) {
                     item.status = 1;
