@@ -17,7 +17,7 @@ const Live       = require('./Live');
 const Users      = require('./Users');
 const Discuss    = require('./Discuss');
 const Questions  = require('./Questions');
-
+const Files      = require('./Files');
 const controller = {
     News: News,
     NewsAct: NewsAct,
@@ -30,7 +30,8 @@ const controller = {
     Users: Users,
     Live: Live,
     Discuss: Discuss,
-    Questions: Questions
+    Questions: Questions,
+    Files: Files
 };
 
 

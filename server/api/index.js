@@ -15,7 +15,8 @@ const serviceApi = {
     UsersApi:require('./UsersApi'),
     LiveApi:require('./LiveApi'),
     DiscussApi:require('./DiscussApi'),
-    QuestionsApi:require('./QuestionsApi')
+    QuestionsApi:require('./QuestionsApi'),
+    FilesApi:require('./FilesApi')
 };
 
 module.exports = serviceApi;

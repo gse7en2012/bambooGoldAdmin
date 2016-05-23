@@ -65,6 +65,7 @@ app.use('/info', routes.Info);
 app.use('/live', routes.Live);
 app.use('/discuss', routes.Discuss);
 app.use('/questions', routes.Questions);
+app.use('/files',routes.Files);
 
 //for umeditor
 app.post('/upload', upload.single('upfile'), (req, res)=> uploadImgRes(req, res, 'images'));

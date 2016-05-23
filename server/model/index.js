@@ -59,6 +59,7 @@ const LiveOpinionLike   = mysqlAppConn.import(__dirname + '/LiveOpinionLike');
 const LiveOpinionReview = mysqlAppConn.import(__dirname + '/LiveOpinionReview');
 const LiveDiscuss       = mysqlAppConn.import(__dirname + '/LiveDiscuss');
 const LiveQuestions     = mysqlAppConn.import(__dirname + '/LiveQuestions');
+const LiveFiles         = mysqlAppConn.import(__dirname + '/LiveFiles');
 //mysqlAdmin
 const AdminUsers = mysqlAdminConn.import(__dirname + '/AdminUsers');
 
@@ -73,10 +74,12 @@ ChannelArt.belongsTo(Channel, {foreignKey: 'channel_id', targetKey: 'channel_id'
 LiveOpinion.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
 LiveDiscuss.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
 LiveQuestions.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
+LiveFiles.belongsTo(Users, {foreignKey: 'uid', targetKey: 'uid'});
 
 exports.LiveOpinion   = LiveOpinion;
 exports.LiveDiscuss   = LiveDiscuss;
 exports.LiveQuestions = LiveQuestions;
+exports.LiveFiles     = LiveFiles;
 
 exports.LiveOpinionLike   = LiveOpinionLike;
 exports.LiveOpinionReview = LiveOpinionReview;

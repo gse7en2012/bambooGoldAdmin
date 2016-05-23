@@ -104,6 +104,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
                 url: '/discuss/add',
                 templateUrl: 'templates/discuss/discussOpinionAdd.html'
             })
+            .state('files', {
+                url: '/files',
+                templateUrl: 'templates/files/filesList.html'
+            })
+            .state('filesAdd', {
+                url: '/files/add',
+                templateUrl: 'templates/files/filesAdd.html'
+            })
             .state('questions', {
                 url: '/questions',
                 templateUrl: 'templates/questions/questionsOpinionList.html'

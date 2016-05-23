@@ -12,5 +12,6 @@ module.exports = {
     Users: require('./Users'),
     Live: require('./Live'),
     Discuss: require('./Discuss'),
-    Questions: require('./Questions')
+    Questions: require('./Questions'),
+    Files: require('./Files')
 };
