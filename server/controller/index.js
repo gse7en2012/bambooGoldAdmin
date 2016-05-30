@@ -18,6 +18,7 @@ const Users      = require('./Users');
 const Discuss    = require('./Discuss');
 const Questions  = require('./Questions');
 const Files      = require('./Files');
+const Qiniu      = require('./Qiniu');
 const controller = {
     News: News,
     NewsAct: NewsAct,
@@ -31,7 +32,8 @@ const controller = {
     Live: Live,
     Discuss: Discuss,
     Questions: Questions,
-    Files: Files
+    Files: Files,
+    Qiniu: Qiniu
 };
 
 

@@ -1,10 +1,10 @@
-<div data-ng-controller="LiveAddCtrl">
+<div data-ng-controller="FilesAddCtrl">
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
                 <ul class="nav nav-tabs ">
-                    <li role="presentation"  ><a href="#/live"> 直播内容管理</a></li>
-                    <li role="presentation" class="active"><a href="#/live/add">发布直播</a></li>
+                    <li role="presentation"  ><a href="#/files">文件内容管理</a></li>
+                    <li role="presentation" class="active"><a href="#/files/add">发布文件</a></li>
                 </ul>
             </div>
         </div>
@@ -14,9 +14,9 @@
         <div class="col-lg-12">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="cc" class="col-sm-1 control-label">老师身份</label>
+                    <label for="uid" class="col-sm-1 control-label">发布者身份</label>
                     <div class="col-sm-9">
-                        <select class="form-control" ng-model="uid" id="vip" ng-options="x.uid as x.nickname for x in verifyUserList">
+                        <select class="form-control" ng-model="uid" id="uid" ng-options="x.uid as x.nickname for x in verifyUserList">
                         </select>
                     </div>
                 </div>
@@ -28,27 +28,40 @@
                     <!--</div>-->
                 <!--</div>-->
                 <div class="form-group">
-                    <label for="cc" class="col-sm-1 control-label">可观看的等级</label>
+                    <label for="vip_allow_see_lv" class="col-sm-1 control-label">可观看的等级</label>
                     <div class="col-sm-9">
                         <select class="form-control" ng-model="allowSeeLv" id="vip_allow_see_lv" ng-options="x.allow_see_lv as x.name for x in allowSeeLvList">
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="title" class="col-sm-1 control-label">直播标题</label>
+                    <label for="url" class="col-sm-1 control-label">文件地址</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="title" placeholder="标题,可不填" ng-model="title">
+                        <input type="text" class="form-control" id="url" placeholder="百度网盘等外链地址,例如:http://pan.baidu.com/ss2XCV" ng-model="url">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="content" class="col-sm-1 control-label">直播内容</label>
+                    <label  class="col-sm-1 control-label">文件图标</label>
+                    <div class="col-sm-9" id="u-container">
+                        <img ng-src="{{sourceLink}}" width="28" height="28" >
+                        <a class="btn btn-default btn-sm" id="pickfiles">上传图标</a>&nbsp;(尺寸50X50)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-sm-1 control-label">文件标题</label>
                     <div class="col-sm-9">
-                        <textarea rows="6" class="form-control" id="content" placeholder="直播的详细内容,例如:后台发送的直播内容$浦发银行(SH600000)$!" ng-model="content"></textarea>
+                        <input type="text" class="form-control" id="title" placeholder="标题,例如:20160524看盘日记" ng-model="title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content" class="col-sm-1 control-label">文件描述</label>
+                    <div class="col-sm-9">
+                        <textarea rows="4" class="form-control" id="content" placeholder="强劲内参!!" ng-model="intro"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-1 col-sm-10">
-                        <button ng-click="add()" class="btn btn-primary"><i class="fa fa-send-o"></i> 发布</button>
+                        <button ng-click="addFile()" class="btn btn-primary"><i class="fa fa-send-o"></i> 发布</button>
                     </div>
                 </div>
             </form>

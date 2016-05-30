@@ -16,17 +16,41 @@ const LiveApi = {
         )
     },
 
-    deleteLiveOpinionIF(req, res){
-        const opId = req.body.opinion_id;
-        return Controller.Live.banLiveOpinion(opId).then(
+    getFilesQiniuTokenIF(req,res){
+        return Controller.Qiniu.getSocialToken().then(
+            r=>{
+                res.json({uptoken:r})
+            },
+            e=>Helpers.resFailure(res, e)
+        )
+    },
+
+    addFilesIF(req,res){
+        const opts={
+            uid: req.body.uid,
+            intro: req.body.intro,
+            title: req.body.title,
+            doc_icon:req.body.doc_icon,
+            url: req.body.url,
+            allow_see_lv: req.body.allow_see_lv
+        };
+        return Controller.Files.addFiles(opts).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
     },
 
-    recoveryLiveOpinionIF(req, res){
-        const opId = req.body.opinion_id;
-        return Controller.Live.recoveryLiveOpinion(opId).then(
+    deleteFilesIF(req, res){
+        const opId = req.body.did;
+        return Controller.Files.banFiles(opId).then(
+            r=>Helpers.resSuccess(res, r),
+            e=>Helpers.resFailure(res, e)
+        )
+    },
+
+    recoveryFilesIF(req, res){
+        const opId = req.body.did;
+        return Controller.Files.recoveryFiles(opId).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )

@@ -34,6 +34,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="title" class="col-sm-1 control-label">直播标题</label>
                     <div class="col-sm-9">
@@ -44,6 +45,14 @@
                     <label for="content" class="col-sm-1 control-label">直播内容</label>
                     <div class="col-sm-9">
                         <textarea rows="6" class="form-control" id="content" placeholder="直播的详细内容,例如:后台发送的直播内容$浦发银行(SH600000)$!" ng-model="content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-1 control-label">直播插图</label>
+                    <div class="col-sm-9" id="u-container">
+                        <a class="btn btn-default btn-sm" id="pickfiles" style="vertical-align: top;">点击上传图片</a>(图片上传成功后会弹窗提示,在出现提示前请不要按发布,否则图片会失败)<br>
+                        <img ng-src="{{sourceLink}}" style="max-width: 640px;">
+
                     </div>
                 </div>
                 <div class="form-group">

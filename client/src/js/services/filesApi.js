@@ -20,14 +20,16 @@ angular.module('RDash').service('filesApiService', ['$http', '$q', function ($ht
         });
     };
 
-    this.deleteOpinion      = (newsId)=>httpRequest({method: 'POST', url: `/live/ban`, data: {opinion_id: newsId}});
-    this.recoveryOpinion    = (newsId)=>httpRequest({
+    this.addFiles = (op)=>httpRequest({method: 'POST', url: `/files/add`, data: op});
+
+    this.deleteFiles      = (did)=>httpRequest({method: 'POST', url: `/files/ban`, data: {did: did}});
+    this.recoveryFiles    = (did)=>httpRequest({
         method: 'POST',
-        url: `/live/recovery`,
-        data: {opinion_id: newsId}
+        url: `/files/recovery`,
+        data: {did: did}
     });
 
-    this.addLiveOpinion = (op)=>httpRequest({method: 'POST', url: `/live/add`, data: op});
+
 
     this.getVerifyUser = ()=>httpRequest({method: 'GET', url: `/users/verify`});
 

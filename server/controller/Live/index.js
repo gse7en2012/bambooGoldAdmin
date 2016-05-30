@@ -93,16 +93,17 @@ const LiveOpinionController = {
         if (opts.channel_id == 2) {
             DbInstance = DataBaseModel.LiveDiscuss;
         }
+        console.log(opts);
         return DbInstance.create({
             uid: opts.uid,
             symbols: opts.symbols,
             content: opts.content,
             type: 1,
             status: 1,
-            pictures: opts.picture,
+            pictures: opts.pictures,
             title: opts.title,
             channel_id: opts.channel_id,
-            allow_see_lv: opts.allow_see_lv
+            allow_see_lv: opts.allow_see_lv,
         });
     },
     banLiveOpinion(opId){

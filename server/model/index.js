@@ -16,6 +16,9 @@ const mysqlAppConn = new Seq(DBConfig.appTableName, DBConfig.user, DBConfig.pass
     logging: console.log,
     omitNull: true,
     maxConcurrentQueries: 150,
+    dialectOptions: {
+        charset: 'utf8mb4'
+    },
     define: {
         timestamps: false,
         freezeTableName: true,
@@ -25,21 +28,21 @@ const mysqlAppConn = new Seq(DBConfig.appTableName, DBConfig.user, DBConfig.pass
     pool: {maxConnections: 150, maxIdleTime: 300}
 });
 
-const mysqlAdminConn = new Seq(DBConfig.adminTableName, DBConfig.user, DBConfig.adminPassword, {
-    host: DBConfig.adminHost,
-    port: DBConfig.port,
-    dialect: 'mysql',
-    logging: console.log,
-    omitNull: true,
-    maxConcurrentQueries: 150,
-    define: {
-        timestamps: false,
-        freezeTableName: true,
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_bin'
-    },
-    pool: {maxConnections: 150, maxIdleTime: 300}
-});
+//const mysqlAdminConn = new Seq(DBConfig.adminTableName, DBConfig.user, DBConfig.adminPassword, {
+//    host: DBConfig.adminHost,
+//    port: DBConfig.port,
+//    dialect: 'mysql',
+//    logging: console.log,
+//    omitNull: true,
+//    maxConcurrentQueries: 150,
+//    define: {
+//        timestamps: false,
+//        freezeTableName: true,
+//        charset: 'utf8mb4',
+//        collate: 'utf8mb4_bin'
+//    },
+//    pool: {maxConnections: 150, maxIdleTime: 300}
+//});
 
 
 const Activity   = mysqlAppConn.import(__dirname + '/Activity');
@@ -61,7 +64,7 @@ const LiveDiscuss       = mysqlAppConn.import(__dirname + '/LiveDiscuss');
 const LiveQuestions     = mysqlAppConn.import(__dirname + '/LiveQuestions');
 const LiveFiles         = mysqlAppConn.import(__dirname + '/LiveFiles');
 //mysqlAdmin
-const AdminUsers = mysqlAdminConn.import(__dirname + '/AdminUsers');
+const AdminUsers = mysqlAppConn.import(__dirname + '/AdminUsers');
 
 
 ChannelArt.belongsTo(Channel, {foreignKey: 'channel_id', targetKey: 'channel_id'});
@@ -87,4 +90,4 @@ exports.LiveUsers         = LiveUsers;
 exports.Users             = Users;
 exports.AdminUsers        = AdminUsers;
 exports.MysqlApp          = mysqlAppConn;
-exports.MysqlAdmin        = mysqlAdminConn;
+//exports.MysqlAdmin        = mysqlAdminConn;

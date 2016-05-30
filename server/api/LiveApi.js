@@ -40,7 +40,8 @@ const LiveApi = {
             content: req.body.content,
             title: req.body.title,
             channel_id: req.body.channel_id,
-            allow_see_lv:req.body.allow_see_lv
+            allow_see_lv:req.body.allow_see_lv,
+            pictures:req.body.pictures
         };
         return Controller.Live.addLiveOpinion(opinion).then(
             r=>Helpers.resSuccess(res, r),

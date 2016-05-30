@@ -19,22 +19,22 @@ function FilesCtrl($scope, $cookieStore, filesApiService) {
     filesApiService.getFilesList(1).then(bindData2Scope);
 
 
-    $scope.delete = (timelineId)=> {
-        if (!confirm('确定删除该条直播!')) return;
-        liveApiService.deleteOpinion(timelineId).then(()=> {
+    $scope.delete = (did)=> {
+        if (!confirm('确定删除该文件!')) return;
+        filesApiService.deleteFiles(did).then(()=> {
             $scope.dataList.forEach((item, index)=> {
-                if (item.timeline_id == timelineId) {
+                if (item.did == did) {
                     item.status = 0;
                 }
             })
         })
     };
 
-    $scope.recovery = (timelineId)=> {
-        if (!confirm('确定恢复该条直播!')) return;
-        liveApiService.recoveryOpinion(timelineId).then(()=> {
+    $scope.recovery = (did)=> {
+        if (!confirm('确定删除该文件!')) return;
+        filesApiService.recoveryFiles(did).then(()=> {
             $scope.dataList.forEach((item, index)=> {
-                if (item.timeline_id == timelineId) {
+                if (item.did == did) {
                     item.status = 1;
                 }
             })

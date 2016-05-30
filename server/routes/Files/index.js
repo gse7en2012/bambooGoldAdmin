@@ -7,11 +7,12 @@ const api        = require('../../api');
 
 filesRouter.get('/list', api.FilesApi.getFilesListIF);
 
+filesRouter.get('/token',api.FilesApi.getFilesQiniuTokenIF);
 
-filesRouter.post('/ban', api.LiveApi.deleteLiveOpinionIF);
+filesRouter.post('/ban', api.FilesApi.deleteFilesIF);
 
-filesRouter.post('/add', api.LiveApi.addLiveOpinionIF);
+filesRouter.post('/add', api.FilesApi.addFilesIF);
 
-filesRouter.post('/recovery', api.LiveApi.recoveryLiveOpinionIF);
+filesRouter.post('/recovery', api.FilesApi.recoveryFilesIF);
 
 module.exports = filesRouter;

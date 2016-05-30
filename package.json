@@ -36,6 +36,7 @@
     "multer": "^1.1.0",
     "mysql": "^2.10.2",
     "popularcrypto": "0.0.3",
+    "qiniu": "^6.1.11",
     "sequelize": "^3.19.3",
     "ueditor": "^1.1.1",
     "underscore": "^1.8.3"

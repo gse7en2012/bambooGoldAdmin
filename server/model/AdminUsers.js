@@ -4,7 +4,7 @@
 'use strict';
 
 module.exports = (seq, DataType)=> {
-    return seq.define('users', {
+    return seq.define('admin_users', {
         uid: {type: DataType.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true},
         name: {type: DataType.TEXT},
         password: {type: DataType.TEXT},

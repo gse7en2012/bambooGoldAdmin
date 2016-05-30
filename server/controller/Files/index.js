@@ -87,34 +87,27 @@ const FilesController = {
             };
         });
     },
-    addLiveOpinion(opts){
-        let DbInstance = DataBaseModel.LiveOpinion;
-        if (opts.channel_id == 2) {
-            DbInstance = DataBaseModel.LiveDiscuss;
-        }
-        return DbInstance.create({
+    addFiles(opts){
+        return DataBaseModel.LiveFiles.create({
             uid: opts.uid,
-            symbols: opts.symbols,
-            content: opts.content,
-            type: 1,
-            status: 1,
-            pictures: opts.picture,
+            intro: opts.intro,
             title: opts.title,
-            channel_id: opts.channel_id,
+            doc_icon:opts.doc_icon,
+            url: opts.url,
             allow_see_lv: opts.allow_see_lv
         });
     },
-    banLiveOpinion(opId){
-        return DataBaseModel.LiveOpinion.find({
-            where: {opinion_id: opId}
+    banFiles(did){
+        return DataBaseModel.LiveFiles.find({
+            where: {did: did}
         }).then((op)=> {
             op.status = 0;
             return op.save();
         })
     },
-    recoveryLiveOpinion(opId){
-        return DataBaseModel.LiveOpinion.find({
-            where: {opinion_id: opId}
+    recoveryFiles(did){
+        return DataBaseModel.LiveFiles.find({
+            where: {did: did}
         }).then((op)=> {
             op.status = 1;
             return op.save();
