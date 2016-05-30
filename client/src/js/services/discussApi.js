@@ -12,9 +12,9 @@ angular.module('RDash').service('discussApiService', ['$http', '$q', function ($
     }
 
 
-    this.getLiveOpinionList = (page, bid)=> {
+    this.getLiveOpinionList = (page, level)=> {
         var url = `/discuss/list?page=${page}`;
-        if (bid) url += '&bid=' + bid;
+        if (level) url += '&level=' + level;
         return httpRequest({
             method: 'GET',
             url: url

@@ -22,12 +22,12 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
         {allow_see_lv: 8, name: 'VVIP'}
     ];
 
-    $scope.channelId = $scope.channelList[0].channel_id;
+    $scope.channelId  = $scope.channelList[0].channel_id;
     $scope.allowSeeLv = $scope.allowSeeLvList[0].allow_see_lv;
 
     liveApiService.getVerifyUser().then((data)=> {
         $scope.verifyUserList = data.result;
-        $scope.uid= $scope.verifyUserList[0].uid;
+        $scope.uid            = $scope.verifyUserList[0].uid;
     });
 
 
@@ -37,7 +37,7 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
             content: $scope.content,
             title: $scope.title,
             channel_id: $scope.channelId,
-            pictures:$scope.sourceLink,
+            pictures: $scope.sourceLink,
             uid: $scope.uid,
             allow_see_lv: $scope.allowSeeLv
         }).then(()=> {
@@ -85,11 +85,14 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
                 //  }
                 // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
 
-                var domain        = up.getOption('domain');
-                var res           = JSON.parse(info);
+                var domain = up.getOption('domain');
+                var res    = JSON.parse(info);
+                var w      = $('#preview').width();
+                var h      = $('#preview').height();
 
-                $scope.sourceLink = domain + res.key; //获取上传成功后的文件的Url
+                $scope.sourceLink = domain + res.key + '?imageView2/1/w/' + w + '/h/' + h; //获取上传成功后的文件的Url
                 $scope.$apply();
+
                 alert('图片上传成功,现在可以点击发布!')
             },
             'Error': function (up, err, errTip) {

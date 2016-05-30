@@ -45,7 +45,8 @@
                     <th>ID</th>
                     <th>所属栏目</th>
                     <th>内容</th>
-                    <th>作者</th>
+                    <th>提问者</th>
+                    <th>提问者等级</th>
                     <th>创建时间</th>
                     <!--<th>查看权限</th>-->
                     <th>是否已回复</th>
@@ -58,6 +59,7 @@
                     <td>{{data.channel_name}}</td>
                     <td width="50%">{{data.content}}</td>
                     <td>{{data.writer.nickname}}</td>
+                    <td>{{vipLevelObj[data.writer.vip_level]}}</td>
                     <td>{{data.time}}</td>
                     <!--<td>{{data.allow_see_lv}}</td>-->
                     <td>{{data.quality==1?'是':'否'}}</td>

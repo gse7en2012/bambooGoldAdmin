@@ -10,7 +10,8 @@ const Helpers    = require('../helpers');
 const DiscussApi = {
     getLiveListIF(req, res){
         const page = req.query.page;
-        return Controller.Discuss.getLiveOpinionList(page).then(
+        const level=req.query.level;
+        return Controller.Discuss.getLiveOpinionList(page,level).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )

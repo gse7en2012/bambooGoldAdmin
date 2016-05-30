@@ -20,6 +20,10 @@ function QuestionsCtrl($scope, $cookieStore, questionsApiService) {
         {value: 3, name: '问答'}
     ];
 
+    $scope.vipLevelObj={
+        1:'普通',2:'会员',4:'VIP',8:'VVIP'
+    };
+
     $scope.changeChannel = function () {
         questionsApiService.getQuestionsOpinionList($scope.currentPage, $scope.quality.value).then(bindData2Scope);
     };

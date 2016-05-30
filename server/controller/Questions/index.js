@@ -25,7 +25,8 @@ const $liveSelfHelpers = {
                 nickname: item.user.nickname,
                 picture: item.user.picture,
                 uid: item.user.uid,
-                verify: item.user.verify
+                verify: item.user.verify,
+                vip_level:item.user.vip_level
             }
         };
         return r;
@@ -41,7 +42,7 @@ const QuestionsOpinionController = {
         const query    = {
             include: [{
                 model: DataBaseModel.Users,
-                attributes: ['nickname', 'picture', 'uid', 'verify']
+                attributes: ['nickname', 'picture', 'uid', 'verify','vip_level']
             }],
             order: 'opinion_id DESC',
             limit: pageSize,

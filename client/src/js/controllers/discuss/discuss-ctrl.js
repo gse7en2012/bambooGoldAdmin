@@ -14,9 +14,26 @@ function DiscussCtrl($scope, $cookieStore, discussApiService) {
         {value: 3, name: '问答'}
     ];
 
-    $scope.changeChannel = function () {
-        discussApiService.getLiveOpinionList($scope.currentPage, $scope.bid.value).then(bindData2Scope);
+    $scope.vipLevelOpList = [
+        {value: 0, name: '全部'},
+        {value: 1, name: '普通'},
+        {value: 2, name: '会员'},
+        {value: 4, name: 'VIP'},
+        {value: 8, name: 'VVIP'}
+    ];
+
+    $scope.vipLevelObj={
+        1:'普通',2:'会员',4:'VIP',8:'VVIP'
     };
+
+    $scope.vipLevelOp    = $scope.vipLevelOpList[0];
+
+    $scope.changeVipLevel = function () {
+        discussApiService.getLiveOpinionList($scope.currentPage, $scope.vipLevelOp.value).then(bindData2Scope);
+    };
+
+
+
 
     function bindData2Scope(data) {
         $scope.dataList    = data.result.dataList;

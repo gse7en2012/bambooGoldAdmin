@@ -14,13 +14,23 @@
         <div class="col-xs-12 col-lg-1 col-md-2">
             <a href="#/discuss/add" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>发布交流</a>
         </div>
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-3 col-md-3">
             <!--<div class="input-group">-->
                 <!--<span class="input-group-addon" id="basic-addon1" style="position: relative;z-index: 99;border-right: 1px solid #ddd;"><i class="fa fa-filter"></i> 根据板块筛选 </span>-->
                 <!--<select class="form-control input-sm" ng-model="bid" id="cc" style="margin-left: -4px;"  ng-options="option.name for option in channelList track by option.value" ng-change="changeChannel()">-->
                 <!--</select>-->
                   <!---->
             <!--</div>-->
+
+            <!--<div class="col-lg-2 col-md-2">-->
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1" style="position: relative;z-index: 99;border-right: 1px solid #ddd;"><i class="fa fa-filter"></i> 根据会员等级筛选 </span>
+                    <select class="form-control input-sm" ng-model="vipLevelOp" id="cc" style="margin-left: -4px;"  ng-options="option.name for option in vipLevelOpList track by option.value" ng-change="changeVipLevel()">
+                    </select>
+
+                </div>
+            <!--</div>-->
+
         </div>
         <div class="col-xs-6 col-md-4 col-lg-offset-1 col-sm-6" style="line-height: 30px;text-align: right">
 
@@ -59,7 +69,7 @@
                 <td width="50%">{{data.content}}</td>
                 <td>{{data.writer.nickname}}</td>
                 <td>{{data.time}}</td>
-                <td>{{data.allow_see_lv}}</td>
+                <td>{{vipLevelObj[data.allow_see_lv]}}</td>
                 <td>{{data.status==1?'正常':'禁用'}}</td>
                 <td>
                     <a class="del-btn text-danger" ng-click="delete(data.timeline_id)"  href="javascript:;" ng-if="data.status==1"><span class="fa fa-fw fa-trash "></span>删除</a>
