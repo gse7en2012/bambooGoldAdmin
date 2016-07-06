@@ -22,6 +22,13 @@ const UsersApi = {
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
+    },
+    searchUsersIF(req,res){
+        const query=req.query.query;
+        return Controller.Users.searchUsers(query).then(
+            r=>Helpers.resSuccess(res, r),
+            e=>Helpers.resFailure(res, e)
+        )
     }
 };
 

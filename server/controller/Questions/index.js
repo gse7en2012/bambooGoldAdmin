@@ -16,6 +16,7 @@ const $liveSelfHelpers = {
             content: item.content,
             is_important: 0,
             pic_urls: [],
+            uid:item.uid,
             time: moment(item.createdAt).utc().format('YYYY-MM-DD HH:mm:ss'),
             timeline_id: item.opinion_id,
             bid: item.channel_id,
@@ -26,7 +27,7 @@ const $liveSelfHelpers = {
                 picture: item.user.picture,
                 uid: item.user.uid,
                 verify: item.user.verify,
-                vip_level:item.user.vip_level
+                vip_level: item.user.vip_level
             }
         };
         return r;
@@ -35,14 +36,14 @@ const $liveSelfHelpers = {
 
 
 const QuestionsOpinionController = {
-    getQuestionsList(page, quality){
+    getQuestionsList(page, quality, uid){
         page           = page || 1;
         const pageSize = 30;
         let totalCount = 0;
         const query    = {
             include: [{
                 model: DataBaseModel.Users,
-                attributes: ['nickname', 'picture', 'uid', 'verify','vip_level']
+                attributes: ['nickname', 'picture', 'uid', 'verify', 'vip_level']
             }],
             order: 'opinion_id DESC',
             limit: pageSize,
@@ -51,6 +52,7 @@ const QuestionsOpinionController = {
         };
 
         if (quality) query.where.quality = quality;
+        if (uid) query.where.uid = uid;
         return DataBaseModel.LiveQuestions.findAndCountAll(query).then((result)=> {
             const promiseArr = [];
             const list       = result.rows;
@@ -89,11 +91,11 @@ const QuestionsOpinionController = {
     getQuestionsDetailsView(id){
         return DataBaseModel.LiveQuestions.find({
             where: {retweeted: id},
-            attributes: ['content', 'createdAt','uid']
+            attributes: ['content', 'createdAt', 'uid']
         }).then((r)=> {
             return {
                 content: r.content,
-                uid:r.uid
+                uid: r.uid
             }
         })
     },

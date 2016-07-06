@@ -6,7 +6,7 @@
 angular.module('RDash').controller('LiveAddCtrl', ['$scope', '$cookieStore', 'liveApiService', LiveAddCtrl]);
 
 function LiveAddCtrl($scope, $cookieStore, liveApiService) {
-    $scope.sourceLink = 'http://www.placehold.it/480X480/DDDDDD/AAAAAA';
+    $scope.sourceLink = 'http://www.placehold.it/180X180/DDDDDD/AAAAAA';
 
 
     $scope.channelList = [
@@ -16,10 +16,10 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
     ];
 
     $scope.allowSeeLvList = [
-        {allow_see_lv: 1, name: '普通'},
+        {allow_see_lv: 1, name: '游客'},
         {allow_see_lv: 2, name: '会员'},
         {allow_see_lv: 4, name: 'VIP'},
-        {allow_see_lv: 8, name: 'VVIP'}
+        {allow_see_lv: 8, name: 'SVIP'}
     ];
 
     $scope.channelId  = $scope.channelList[0].channel_id;
@@ -30,6 +30,31 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
         $scope.uid            = $scope.verifyUserList[0].uid;
     });
 
+
+    $scope.searchStock = function (query) {
+        if (query.length > 1) {
+            return liveApiService.searchStock(query).then((data)=> {
+                if (data.result.length > 0) {
+                    return data.result
+                } else {
+                    return {v: query};
+                }
+            })
+        }
+    };
+
+
+    $scope.addStockToContent = function (arr) {
+        $scope.content = $scope.content || '';
+        var ss         = arr || $scope.stock;
+        if (ss) {
+            //var stocks = $scope.stock.map((item)=> {return item.v}).join(',');
+            ss.forEach(function (item) {
+                if (item.v && $scope.content.indexOf(item.v) == -1)
+                    $scope.content += item.v + ',';
+            })
+        }
+    };
 
     $scope.add = ()=> {
         if (!$scope.channelId) return alert('请选择板块');
@@ -90,7 +115,7 @@ function LiveAddCtrl($scope, $cookieStore, liveApiService) {
                 var w      = $('#preview').width();
                 var h      = $('#preview').height();
 
-                $scope.sourceLink = domain + res.key + '?imageView2/1/w/' + w + '/h/' + h; //获取上传成功后的文件的Url
+                $scope.sourceLink = domain + res.key + '?'+ w + 'x' + h; //获取上传成功后的文件的Url
                 $scope.$apply();
 
                 alert('图片上传成功,现在可以点击发布!')

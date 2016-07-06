@@ -20,6 +20,9 @@ angular.module('RDash').service('liveApiService', ['$http', '$q', function ($htt
             url: url
         });
     };
+
+    this.searchStock=(op)=>httpRequest({method: 'GET', url: `/live/search/stock?query=`+op});
+
     this.deleteOpinion      = (newsId)=>httpRequest({method: 'POST', url: `/live/ban`, data: {opinion_id: newsId}});
     this.recoveryOpinion    = (newsId)=>httpRequest({
         method: 'POST',

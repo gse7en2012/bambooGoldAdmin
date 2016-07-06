@@ -47,6 +47,14 @@ const LiveApi = {
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )
+    },
+
+    searchStockIF(req,res){
+        const query=req.query.query;
+        return Controller.Live.searchStock(query).then(
+            r=>Helpers.resSuccess(res, r),
+            e=>Helpers.resFailure(res, e)
+        )
     }
 
 };

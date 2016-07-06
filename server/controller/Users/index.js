@@ -43,6 +43,20 @@ const UsersController = {
         })
     },
 
+    searchUsers(query){
+        return DataBaseModel.Users.findAll({
+            attributes: ['uid', 'nickname'],
+            where: {
+                $or: {
+                    nickname: {$like: `%${query}%`},
+                    uid: {$like: `%${query}%`}
+                }
+            },
+            limit: 20,
+            order: 'uid DESC'
+        })
+    },
+
     banUser(uid, type){
         return DataBaseModel.Users.find({
             where: {uid: uid}
@@ -57,7 +71,6 @@ const UsersController = {
     },
 
 };
-
 module.exports = UsersController;
 //UsersController.getUserList(1).then((r)=> {console.log(JSON.stringify(r));})
 //AuthController.generateAdminUser('gseven2').then((r)=>{console.log(r);});

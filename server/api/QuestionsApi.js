@@ -11,7 +11,8 @@ const QuestionsApi = {
     getQuestionsListIF(req, res){
         const page = req.query.page;
         const quality  = req.query.quality;
-        return Controller.Questions.getQuestionsList(page, quality).then(
+        const uid=req.query.uid;
+        return Controller.Questions.getQuestionsList(page, quality,uid).then(
             r=>Helpers.resSuccess(res, r),
             e=>Helpers.resFailure(res, e)
         )

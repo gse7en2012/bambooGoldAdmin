@@ -11,7 +11,7 @@ function QuestionsCtrl($scope, $cookieStore, questionsApiService) {
     $scope.replyStatusList = [
         {value: 1, name: '已回复'},
         {value: 0, name: '未回复'},
-        {value: -1, name: '全部'}
+        {value: -1, name: '全部'},
     ];
 
     $scope.channelList = [
@@ -21,11 +21,15 @@ function QuestionsCtrl($scope, $cookieStore, questionsApiService) {
     ];
 
     $scope.vipLevelObj={
-        1:'普通',2:'会员',4:'VIP',8:'VVIP'
+        1:'游客',2:'会员',4:'VIP',8:'SVIP'
     };
 
     $scope.changeChannel = function () {
         questionsApiService.getQuestionsOpinionList($scope.currentPage, $scope.quality.value).then(bindData2Scope);
+    };
+
+    $scope.onlyViewThisUser=function(uid){
+        questionsApiService.getQuestionsOpinionList(1,-1,uid).then(bindData2Scope);
     };
 
 

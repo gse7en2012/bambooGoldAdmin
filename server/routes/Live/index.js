@@ -7,6 +7,7 @@ const api        = require('../../api');
 
 liveRouter.get('/list', api.LiveApi.getLiveListIF);
 
+liveRouter.get('/search/stock',api.LiveApi.searchStockIF);
 
 liveRouter.post('/ban', api.LiveApi.deleteLiveOpinionIF);
 

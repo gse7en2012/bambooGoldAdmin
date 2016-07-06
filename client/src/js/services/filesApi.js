@@ -20,6 +20,8 @@ angular.module('RDash').service('filesApiService', ['$http', '$q', function ($ht
         });
     };
 
+
+
     this.addFiles = (op)=>httpRequest({method: 'POST', url: `/files/add`, data: op});
 
     this.deleteFiles      = (did)=>httpRequest({method: 'POST', url: `/files/ban`, data: {did: did}});

@@ -119,6 +119,14 @@ angular.module('RDash').config(['$stateProvider', '$urlRouterProvider',
             .state('questionsDetails', {
                 url: '/questions/:id?view',
                 templateUrl: 'templates/questions/questionsOpinionReply.html'
+            })
+            .state('messagePush', {
+                url: '/message',
+                templateUrl: 'templates/message/messageAdd.html'
+            })
+            .state('vipAdd', {
+                url: '/vip',
+                templateUrl: 'templates/vips/vipAdd.html'
             });
     }
 ]);

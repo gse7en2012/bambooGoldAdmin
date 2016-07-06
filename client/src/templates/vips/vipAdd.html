@@ -1,0 +1,90 @@
+<div data-ng-controller="VipAddCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <ul class="nav nav-tabs ">
+                    <!--<li role="presentation"><a href="#/message"> 消息中心管理</a></li>-->
+                    <li role="presentation" class="active"><a href="#/vip">付费管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="white-box" style="float: none;">
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-horizontal">
+                    <!--<div class="form-group">-->
+                    <!--<label for="cc" class="col-sm-2 control-label">所属板块</label>-->
+                    <!--<div class="col-sm-8">-->
+                    <!--<select class="form-control" ng-model="channelId" id="cc" ng-options="x.channel_id as x.name for x in channelList">-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">搜索方式</label>
+
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" name="ss2" value="1" ng-model="search">按昵称模糊搜索</label>
+                            <label class="radio-inline"><input type="radio" name="ss2" value="0" ng-model="search">按uid搜索</label>
+                            <p class="alert-warning alert" style="margin-top: 4px;margin-bottom:0;padding: 4px;">模糊搜索取决于用户量,如果确定了uid的话请直接选用不启用模糊搜索,直接输入uid</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开通服务的用户</label>
+                        <div class="col-sm-8" style="min-height: 35px;">
+                           <input  class="form-control" placeholder="接受推送的uid,多个uid用半角逗号分割.例如:1,2,3,4,5" ng-model="uids" ng-show="search==0" style="height: 35px;">
+                            <oi-select ng-show="search==1" oi-options="(item.v) for item in searchUser($query)" ng-model="uids" multiple
+                                       oi-select-options="{newItem: true}"></oi-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">选择套餐</label>
+
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" name="vl" value="4" ng-model="vipLevel">VIP</label>
+                            <label class="radio-inline"><input type="radio" name="vl" value="8" ng-model="vipLevel">SVIP</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">开通时间</label>
+
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" name="ct" value="m" ng-model="last">一个月</label>
+                            <label class="radio-inline"><input type="radio" name="ct" value="s" ng-model="last">一季度</label>
+                            <label class="radio-inline"><input type="radio" name="ct" value="y" ng-model="last">一年</label>
+                            <label class="radio-inline"><input type="radio" name="ct" value="d" ng-model="last">15天体验</label>
+                            <label class="radio-inline" style="height: 27px;"><input type="radio" name="ct" value="c" ng-model="last"><input ng-model="lastDay" style="height:20px;width: 50px;">个月</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-20">
+                            <button ng-click="upgrade()" class="btn btn-primary"><i class="fa fa-level-up"></i> 确认升级</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div ng-show="isSuccess">
+                    <p>操作结果:</p>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>昵称</th>
+                            <th>VIP期限</th>
+                            <th>VIP等级</th>
+                        </tr>
+                        </thead>
+
+                        <tr ng-repeat="data in re">
+                            <td>{{data.name}}</td>
+                            <td>{{data.vip_expires}}</td>
+                            <td>{{data.vip_level}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

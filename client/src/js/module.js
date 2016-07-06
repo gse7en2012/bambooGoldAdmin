@@ -53,5 +53,5 @@ angular.module('lock-umeditor', []).directive("lockUmeditor", function () {
 });
 
 
-angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies', 'lock-umeditor', 'flow', '720kb.datepicker']);
+angular.module('RDash', ['ui.bootstrap', 'ui.router', 'ngCookies', 'lock-umeditor', 'flow', '720kb.datepicker','oi.select']);
 

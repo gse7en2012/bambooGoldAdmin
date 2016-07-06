@@ -67,6 +67,7 @@
                         <!--<a class="del-btn text-danger" ng-click="delete(data.timeline_id)"  href="javascript:;" ng-if="data.quality==1"><span class="fa fa-fw fa-trash "></span>删除</a>-->
                         <a class="del-btn text-success"  href="#/questions/{{data.timeline_id}}"  ng-if="data.quality!=1"><span class="fa fa-fw fa-mail-reply "></span>回复</a>
                         <a class="del-btn text-info"  href="#/questions/{{data.timeline_id}}?view=true"  ng-if="data.quality==1"><span class="fa fa-fw fa-eye "></span>查看</a>
+                        <a class="del-btn text-primary" ng-click="onlyViewThisUser(data.uid)"><span class="fa fa-fw fa-bookmark"></span>只看该用户的问题 </a>
                     </td>
                 </tr>
                 </tbody>

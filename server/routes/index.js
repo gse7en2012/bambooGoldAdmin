@@ -13,5 +13,7 @@ module.exports = {
     Live: require('./Live'),
     Discuss: require('./Discuss'),
     Questions: require('./Questions'),
-    Files: require('./Files')
+    Files: require('./Files'),
+    Message: require('./Message'),
+    Vip: require('./Vip')
 };

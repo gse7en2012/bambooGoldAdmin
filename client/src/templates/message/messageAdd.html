@@ -1,0 +1,89 @@
+<div data-ng-controller="MessageAddCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <ul class="nav nav-tabs ">
+                    <!--<li role="presentation"><a href="#/message"> 消息中心管理</a></li>-->
+                    <li role="presentation" class="active"><a href="#/message">发布推送</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="white-box" style="float: none;">
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-horizontal">
+
+                    <!--<div class="form-group">-->
+                    <!--<label for="cc" class="col-sm-2 control-label">所属板块</label>-->
+                    <!--<div class="col-sm-8">-->
+                    <!--<select class="form-control" ng-model="channelId" id="cc" ng-options="x.channel_id as x.name for x in channelList">-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">推送类型</label>
+
+                        <div class="col-sm-8">
+                            <label class="radio-inline"><input type="radio" name="ss" value="1" ng-model="cate">单体推送</label>
+                            <label class="radio-inline"><input type="radio" name="ss" value="2" ng-model="cate">群体推送</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="cate==1">
+                        <label class="col-sm-2 control-label">是否启用模糊搜索</label>
+
+                        <div class="col-sm-8" >
+                            <label class="radio-inline"><input type="radio" name="ss2" value="1" ng-model="search">是</label>
+                            <label class="radio-inline"><input type="radio" name="ss2" value="0" ng-model="search">否</label>
+                            <p class="alert-warning alert" style="margin-top: 4px;margin-bottom:0;padding: 4px;">模糊搜索取决于用户量,如果确定了uid的话请直接选用不启用模糊搜索,直接输入uid</p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="cate==1">
+                        <label class="col-sm-2 control-label">接受推送的uid</label>
+                        <div class="col-sm-8" style="height: 35px;">
+                           <input  class="form-control" placeholder="接受推送的uid,多个uid用半角逗号分割.例如:1,2,3,4,5" ng-model="uids" ng-show="search==0">
+                            <oi-select ng-show="search==1" oi-options="(item.v) for item in searchUser($query)" ng-model="uids" multiple
+                                       oi-select-options="{newItem: true}"></oi-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="cate==2">
+                        <label class="col-sm-2 control-label">接受推送的VIP等级</label>
+
+                        <div class="col-sm-8">
+                            <select class="form-control" ng-model="allowSeeLv" id="vip_allow_see_lv"
+                                    ng-options="x.allow_see_lv as x.name for x in allowSeeLvList">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">推送标题</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="title" placeholder="标题" ng-model="title">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="content" class="col-sm-2 control-label">推送内容</label>
+
+                        <div class="col-sm-8">
+                            <textarea rows="6" class="form-control" id="content" placeholder="推送的详细内容"
+                                      ng-model="message"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-20">
+                            <button ng-click="push()" class="btn btn-primary"><i class="fa fa-send-o"></i>推送</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

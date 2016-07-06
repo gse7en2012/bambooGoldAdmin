@@ -76,10 +76,10 @@ function FilesAddCtrl($scope, $cookieStore, filesApiService) {
     ];
 
     $scope.allowSeeLvList = [
-        {allow_see_lv: 1, name: '普通'},
+        {allow_see_lv: 1, name: '游客'},
         {allow_see_lv: 2, name: '会员'},
         {allow_see_lv: 4, name: 'VIP'},
-        {allow_see_lv: 8, name: 'VVIP'}
+        {allow_see_lv: 8, name: 'SVIP'}
     ];
 
     $scope.channelId  = $scope.channelList[0].channel_id;

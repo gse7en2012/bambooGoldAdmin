@@ -4,9 +4,9 @@
 'use strict';
 
 
-angular.module('RDash').controller('DiscussCtrl', ['$scope', '$cookieStore', 'discussApiService', DiscussCtrl]);
+angular.module('RDash').controller('LiveCtrl', ['$scope', '$cookieStore', 'liveApiService', LiveCtrl]);
 
-function DiscussCtrl($scope, $cookieStore, discussApiService) {
+function LiveCtrl($scope, $cookieStore, liveApiService) {
 
     $scope.channelList = [
         {value: 1, name: '直播'},
@@ -14,26 +14,9 @@ function DiscussCtrl($scope, $cookieStore, discussApiService) {
         {value: 3, name: '问答'}
     ];
 
-    $scope.vipLevelOpList = [
-        {value: 0, name: '全部'},
-        {value: 1, name: '游客'},
-        {value: 2, name: '会员'},
-        {value: 4, name: 'VIP'},
-        {value: 8, name: 'SVIP'}
-    ];
-
-    $scope.vipLevelObj={
-        1:'游客',2:'会员',4:'VIP',8:'SVIP'
+    $scope.changeChannel = function () {
+        liveApiService.getLiveOpinionList($scope.currentPage, $scope.bid.value).then(bindData2Scope);
     };
-
-    $scope.vipLevelOp    = $scope.vipLevelOpList[0];
-
-    $scope.changeVipLevel = function () {
-        discussApiService.getLiveOpinionList($scope.currentPage, $scope.vipLevelOp.value).then(bindData2Scope);
-    };
-
-
-
 
     function bindData2Scope(data) {
         $scope.dataList    = data.result.dataList;
@@ -44,12 +27,12 @@ function DiscussCtrl($scope, $cookieStore, discussApiService) {
         })
     }
 
-    discussApiService.getLiveOpinionList(1).then(bindData2Scope);
+    liveApiService.getLiveOpinionList(1).then(bindData2Scope);
 
 
     $scope.delete = (timelineId)=> {
-        if (!confirm('确定删除该条交流!')) return;
-        discussApiService.deleteOpinion(timelineId).then(()=> {
+        if (!confirm('确定删除该条直播!')) return;
+        liveApiService.deleteOpinion(timelineId).then(()=> {
             $scope.dataList.forEach((item, index)=> {
                 if (item.timeline_id == timelineId) {
                     item.status = 0;
@@ -59,8 +42,8 @@ function DiscussCtrl($scope, $cookieStore, discussApiService) {
     };
 
     $scope.recovery = (timelineId)=> {
-        if (!confirm('确定恢复该条交流!')) return;
-        discussApiService.recoveryOpinion(timelineId).then(()=> {
+        if (!confirm('确定恢复该条直播!')) return;
+        liveApiService.recoveryOpinion(timelineId).then(()=> {
             $scope.dataList.forEach((item, index)=> {
                 if (item.timeline_id == timelineId) {
                     item.status = 1;

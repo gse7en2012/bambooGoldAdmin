@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
     <link rel="stylesheet" type="text/css" href="components/angularjs-datepicker/dist/angular-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="components/oi.select/dist/select.min.css">
     <link rel="stylesheet" type="text/css" href="components/mystyle.css">
     <!-- endbuild -->
     <!-- SCRIPTS -->
@@ -25,6 +26,7 @@
     <script type="text/javascript" src="components/plupload/js/plupload.full.min.js"></script>
     <script type="text/javascript" src="components/qiniu/dist/qiniu.min.js"></script>
     <script type="text/javascript" src="components/moment/moment.min.js"></script>
+    <script type="text/javascript" src="components/oi.select/dist/select-tpls.min.js"></script>
     <script type="text/javascript" src="components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
     <!-- endbuild -->
     <!-- Custom Scripts -->
@@ -68,9 +70,12 @@
                 <a href="#/files" ng-click="setNavName($event)">文件管理<span
                         class="menu-icon fa fa-file-o fa-fw"></span></a>
             </li>
-
             <li class="sidebar-list">
-                <a onclick="alert('正在开发')" ng-click="setNavName($event)">付费管理<span class="menu-icon fa fa-money fa-fw"></span></a>
+                <a href="#/message" ng-click="setNavName($event)">消息推送<span
+                        class="menu-icon fa fa-send-o fa-fw"></span></a>
+            </li>
+            <li class="sidebar-list">
+                <a href="#/vip" ng-click="setNavName($event)">付费管理<span class="menu-icon fa fa-money fa-fw"></span></a>
             </li>
             <li class="sidebar-list">
                 <a onclick="alert('正在开发')" ng-click="setNavName($event)">数据统计 <span

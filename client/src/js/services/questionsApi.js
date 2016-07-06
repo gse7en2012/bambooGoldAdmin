@@ -12,9 +12,10 @@ angular.module('RDash').service('questionsApiService', ['$http', '$q', function 
     }
 
 
-    this.getQuestionsOpinionList = (page, status)=> {
+    this.getQuestionsOpinionList = (page, status, uid)=> {
         var url = `/questions/list?page=${page}`;
         if (status && status != -1) url += '&quality=' + status;
+        if (uid) url += '&uid=' + uid;
         return httpRequest({
             method: 'GET',
             url: url
@@ -26,7 +27,7 @@ angular.module('RDash').service('questionsApiService', ['$http', '$q', function 
         return httpRequest({method: 'GET', url: url});
     };
 
-    this.getQuestionsOpinionDetailsView=(id)=>{
+    this.getQuestionsOpinionDetailsView = (id)=> {
         var url = `/questions/view?id=${id}`;
         return httpRequest({method: 'GET', url: url});
     };

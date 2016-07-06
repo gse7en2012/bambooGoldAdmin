@@ -63,6 +63,9 @@ const LiveOpinionReview = mysqlAppConn.import(__dirname + '/LiveOpinionReview');
 const LiveDiscuss       = mysqlAppConn.import(__dirname + '/LiveDiscuss');
 const LiveQuestions     = mysqlAppConn.import(__dirname + '/LiveQuestions');
 const LiveFiles         = mysqlAppConn.import(__dirname + '/LiveFiles');
+const Stock             = mysqlAppConn.import(__dirname + '/Stock');
+const Message           = mysqlAppConn.import(__dirname + '/Message');
+const Notify            = mysqlAppConn.import(__dirname + '/Notify');
 //mysqlAdmin
 const AdminUsers = mysqlAppConn.import(__dirname + '/AdminUsers');
 
@@ -90,4 +93,7 @@ exports.LiveUsers         = LiveUsers;
 exports.Users             = Users;
 exports.AdminUsers        = AdminUsers;
 exports.MysqlApp          = mysqlAppConn;
+exports.Stock             = Stock;
+exports.Notify            = Notify;
+exports.Message           = Message;
 //exports.MysqlAdmin        = mysqlAdminConn;

@@ -121,6 +121,19 @@ const LiveOpinionController = {
             op.status = 1;
             return op.save();
         })
+    },
+    searchStock(query){
+        return DataBaseModel.Stock.findAll({
+            where:{
+                $or:{
+                    symbol:{$like:`%${query}%`},
+                    name:{$like:`%${query}%`}
+                }
+            },
+            limit:20
+        }).then((r)=>{
+            return r.map((item)=>{return {v:`$${item.name} (${item.symbol.toUpperCase()})$`}})
+        })
     }
 };
 

@@ -12,4 +12,6 @@ usersRouter.get('/list', api.UsersApi.getUsersListIF);
 
 usersRouter.get('/verify', api.UsersApi.getVerifyUserIF);
 
+usersRouter.get('/search', api.UsersApi.searchUsersIF);
+
 module.exports = usersRouter;
