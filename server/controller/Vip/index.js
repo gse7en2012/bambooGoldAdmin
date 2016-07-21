@@ -4,9 +4,9 @@
 
 'use strict';
 
-const moment        = require('moment');
-const DataBaseModel = require('../../model');
-
+const moment            = require('moment');
+const DataBaseModel     = require('../../model');
+const MessageController = require('../Message');
 
 
 const VipController = {
@@ -14,6 +14,19 @@ const VipController = {
         if (!Array.isArray(uids)) {
             return Promise.reject('uid错误')
         }
+
+        const pushHash = {
+            m: '1个月',
+            s: '1个季度',
+            y: '1年',
+            d: '15天试用VIP',
+            c: lastMonth + '个月'
+        };
+        const vipHash  = {
+            4: 'VIP',
+            8: 'SVIP'
+        };
+
 
         function getNewVipExpires(type, day) {
             const initDate    = day ? moment(day) : moment();
@@ -30,11 +43,11 @@ const VipController = {
         function upgradeVip(user) {
             user.vip_expires = getNewVipExpires(last, user.vip_expires);
             user.vip_level   = level;
-            return user.save().then((u)=>{
+            return user.save().then((u)=> {
                 return {
-                    name:u.nickname,
-                    vip_expires:u.vip_expires,
-                    vip_level:u.vip_level
+                    name: u.nickname,
+                    vip_expires: u.vip_expires,
+                    vip_level: u.vip_level
                 }
             });
         }
@@ -42,11 +55,13 @@ const VipController = {
         return DataBaseModel.Users.findAll({
             where: {uid: {$in: uids}}
         }).then((r)=> {
-            return Promise.all(r.map((item)=>upgradeVip(item)));
+            return Promise.all(r.map((item)=>upgradeVip(item))).then((list)=> {
+                MessageController.pushMessage('VIP服务升级通知', '恭喜，你' + pushHash[last] + '的' + vipHash[level] + '服务已经开通。', uids);
+                return list;
+            });
         })
 
     }
 };
-
 
 module.exports = VipController;

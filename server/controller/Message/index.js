@@ -122,7 +122,6 @@ const MessageController = {
                         uid: item
                     }
                 });
-                console.log(dbData);
                 DataBaseModel.Message.bulkCreate(dbData);
             }
             return r;
